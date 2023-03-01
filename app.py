@@ -3,6 +3,8 @@
 import asyncio
 import json
 import secrets
+from socket import gethostname, gethostbyname
+
 import websockets
 
 from connect4 import PLAYER1, PLAYER2, Connect4
@@ -10,6 +12,12 @@ from connect4 import PLAYER1, PLAYER2, Connect4
 
 JOIN = {}
 WATCH = {}
+
+
+def find_out_server_ip_address():
+    hostname = gethostname()
+    own_ip_address = gethostbyname(hostname)
+    return own_ip_address
 
 
 async def error(websocket, message):
@@ -168,7 +176,7 @@ async def handler(websocket):
 
 
 async def main():
-    async with websockets.serve(handler, "", 8001):
+    async with websockets.serve(handler, find_out_server_ip_address(), 8001):
         await asyncio.Future()  # run forever
 
 
