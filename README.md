@@ -7,6 +7,11 @@ ATTENTION!!!
 First of all, you need to add the real ip address to app.py (row #171) and to main.js (row #79).
 The default port for both cases is 8001.
 
-(Начал решать эту проблему, создав функцию поиска ip сервера ***find_out_server_ip_address()***
 
-TODO: РАЗОБРАТЬСЯ И ДОДЕЛАТЬ!!!)
+HOW TO RUN SERVER AUTOMATICALLY AFTER EVERY CHANGE OF THE CODE:
+
+```commandline
+watchmedo auto-restart --pattern "*.py" --recursive --signal SIGTERM python app.py
+```
+
+More info: https://websockets.readthedocs.io/en/stable/howto/autoreload.html
